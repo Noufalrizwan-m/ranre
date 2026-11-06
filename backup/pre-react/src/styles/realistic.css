@@ -1,0 +1,641 @@
+/* Illustrative skyline, with matched day and night views. */
+.hero {
+  min-height: 100svh;
+  height: 100svh;
+  background: #64839b;
+}
+.hero__sky,
+.hero__sky::after {
+  position: absolute;
+  inset: 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero__sky {
+  z-index: -2;
+  background-image: url("../../assets/images/skyline-day.png");
+}
+.hero__sky::after {
+  content: "";
+  background-image: url("../../assets/images/skyline-night.png");
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.hero[data-mode="night"] .hero__sky {
+  background: url("../../assets/images/skyline-day.png") center / cover
+    no-repeat;
+}
+.hero[data-mode="night"] .hero__sky::after {
+  opacity: 1;
+}
+.light-control__switch {
+  position: absolute;
+  top: 50%;
+  right: max(3%, 24px);
+  z-index: 1;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 62px;
+  height: 112px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 40px;
+  background: rgba(29, 41, 55, 0.38);
+  box-shadow:
+    0 8px 35px rgba(13, 26, 40, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+}
+.light-control__indicator {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff9e9;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.35s ease;
+}
+.hero[data-mode="night"] .light-control__indicator {
+  transform: translateY(50px);
+}
+.light-control__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  font-size: 27px;
+  line-height: 1;
+  transition: color 0.3s;
+}
+.hero[data-mode="day"] .light-control__icon--sun {
+  color: #ad883c;
+}
+.hero[data-mode="night"] .light-control__icon--moon {
+  color: #344a73;
+}
+.light-control__switch:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 5px;
+}
+@media (max-width: 760px) {
+  .hero {
+    min-height: 100svh;
+  }
+  .hero__sky,
+  .hero__sky::after {
+    background-position: center center;
+  }
+  .light-control__switch {
+    right: 16px;
+    width: 54px;
+    height: 100px;
+    padding: 5px;
+  }
+  .light-control__indicator {
+    width: 42px;
+    height: 42px;
+    left: 5px;
+    top: 5px;
+  }
+  .hero[data-mode="night"] .light-control__indicator {
+    transform: translateY(46px);
+  }
+  .light-control__icon {
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__sky::after,
+  .light-control__indicator,
+  .light-control__icon {
+    transition: none;
+  }
+}
+
+/* Hero message */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(12, 29, 41, 0.74) 0%,
+    rgba(12, 29, 41, 0.53) 26%,
+    rgba(12, 29, 41, 0.08) 53%,
+    transparent 67%
+  );
+}
+.hero-copy {
+  position: absolute;
+  left: max(6%, calc((100vw - 1600px) / 2));
+  bottom: 13%;
+  width: min(39%, 510px);
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+.hero-copy h1 {
+  margin: 0;
+  font-weight: 400;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+}
+.hero-copy__years {
+  display: block;
+  font-size: clamp(58px, 7vw, 108px);
+  color: #fff8e6;
+}
+.hero-copy__headline {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(32px, 3.3vw, 52px);
+}
+.hero-copy p {
+  max-width: 415px;
+  margin: 25px 0 0;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.5;
+}
+.hero-copy__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  min-height: 56px;
+  margin-top: 28px;
+  padding: 0 23px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: none;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.hero-copy__link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+.hero-copy__link span {
+  font-size: 22px;
+}
+@media (max-width: 760px) {
+  .hero::before {
+    background: linear-gradient(
+      0deg,
+      rgba(12, 29, 41, 0.9) 0%,
+      rgba(12, 29, 41, 0.66) 30%,
+      rgba(12, 29, 41, 0.05) 68%,
+      transparent 80%
+    );
+  }
+  .hero-copy {
+    left: 6%;
+    bottom: max(5%, 24px);
+    width: min(78%, 420px);
+  }
+  .hero-copy__years {
+    font-size: clamp(52px, 14vw, 74px);
+  }
+  .hero-copy__headline {
+    font-size: clamp(29px, 7.6vw, 38px);
+    margin-top: 7px;
+  }
+  .hero-copy p {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .hero-copy__link {
+    min-height: 50px;
+    margin-top: 17px;
+    padding: 0 20px;
+  }
+}
+
+/* The tower overlaps the experience figure to add depth. */
+.hero-copy__years {
+  position: absolute;
+  left: calc(50vw - max(6vw, (100vw - 1600px) / 2));
+  bottom: calc(50svh - 13svh);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: clamp(92px, 13vw, 180px);
+  text-align: center;
+}
+.hero__tower-layer {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: url("../../assets/images/skyline-day.png") center / cover
+    no-repeat;
+  clip-path: polygon(
+    49.8% 0,
+    50.3% 0,
+    50.55% 17%,
+    51.2% 27%,
+    51.9% 40%,
+    52.7% 53%,
+    53.4% 63%,
+    54.5% 75%,
+    56% 90%,
+    44% 90%,
+    45.5% 75%,
+    46.6% 63%,
+    47.3% 53%,
+    48.1% 40%,
+    48.8% 27%,
+    49.45% 17%
+  );
+}
+.hero[data-mode="night"] .hero__tower-layer {
+  background-image: url("../../assets/images/skyline-night.png");
+}
+.light-control__switch {
+  z-index: 2;
+}
+@media (max-width: 760px) {
+  .hero-copy__years {
+    left: 44vw;
+    bottom: calc(56svh - max(5svh, 24px));
+    font-size: clamp(65px, 17vw, 100px);
+  }
+  .hero__tower-layer {
+    clip-path: polygon(
+      49.5% 0,
+      50.5% 0,
+      51% 15%,
+      52.5% 26%,
+      54% 37%,
+      56% 49%,
+      58.5% 62%,
+      61% 74%,
+      65% 90%,
+      35% 90%,
+      39% 74%,
+      41.5% 62%,
+      44% 49%,
+      46% 37%,
+      47.5% 26%,
+      49% 15%
+    );
+  }
+}
+/* Limit the foreground cutout to the large figure so other copy stays legible. */
+.hero__tower-layer {
+  clip-path: polygon(48.7% 22%, 51.3% 22%, 52.8% 55%, 47.2% 55%);
+}
+@media (max-width: 760px) {
+  .hero__tower-layer {
+    clip-path: polygon(47% 22%, 53% 22%, 57% 55%, 43% 55%);
+  }
+}
+
+/* The same image and shading are used for both layers to avoid visible seams. */
+.hero {
+  --sky-shade: linear-gradient(
+    90deg,
+    rgba(12, 29, 41, 0.74) 0%,
+    rgba(12, 29, 41, 0.53) 26%,
+    rgba(12, 29, 41, 0.08) 53%,
+    transparent 67%
+  );
+}
+.hero::before {
+  display: none;
+}
+.hero__sky,
+.hero[data-mode="night"] .hero__sky,
+.hero__tower-layer,
+.hero[data-mode="night"] .hero__tower-layer {
+  background:
+    var(--sky-shade),
+    url("../../assets/images/skyline-day.jpg") center / cover no-repeat;
+}
+.hero__sky::after,
+.hero__tower-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    var(--sky-shade),
+    url("../../assets/images/skyline-night.jpg") center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.hero[data-mode="night"] .hero__sky::after,
+.hero[data-mode="night"] .hero__tower-layer::after {
+  opacity: 1;
+}
+.hero-copy__years {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(72px, 10vw, 148px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.hero-copy__years.is-changing {
+  opacity: 0;
+  transform: translate(-50%, 8px);
+}
+.hero-copy__headline {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  transition: opacity 0.3s ease;
+}
+.hero-copy__headline.is-changing {
+  opacity: 0;
+}
+.hero-copy__pause {
+  position: absolute;
+  left: max(6%, calc((100vw - 1600px) / 2));
+  bottom: 5%;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffffffa6;
+  border-radius: 50%;
+  color: #fff;
+  background: #14212c70;
+  font-size: 17px;
+  cursor: pointer;
+}
+@media (max-width: 760px) {
+  .hero {
+    --sky-shade: linear-gradient(
+      0deg,
+      rgba(12, 29, 41, 0.9) 0%,
+      rgba(12, 29, 41, 0.66) 30%,
+      rgba(12, 29, 41, 0.05) 68%,
+      transparent 80%
+    );
+  }
+  .hero-copy__years {
+    font-size: clamp(41px, 12vw, 64px);
+    bottom: calc(58svh - max(5svh, 24px));
+  }
+  .hero-copy__headline {
+    font-size: clamp(25px, 7vw, 34px);
+  }
+  .hero-copy__pause {
+    left: auto;
+    right: 18px;
+    bottom: max(5%, 24px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__tower-layer::after,
+  .hero-copy__years,
+  .hero-copy__headline {
+    transition: none;
+  }
+}
+
+.hero-copy__years {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(60px, 6vw, 95px);
+}
+@media (max-width: 760px) {
+  .hero-copy__years {
+    gap: 55px;
+    font-size: clamp(34px, 10vw, 55px);
+  }
+}
+
+/* Keep each supporting line immediately beneath its large message. */
+.hero-copy__headline {
+  position: absolute;
+  left: calc(50vw - max(6vw, (100vw - 1600px) / 2));
+  bottom: calc(50svh - 13svh - 76px);
+  transform: translateX(-50%);
+  width: min(80vw, 580px);
+  margin: 0;
+  text-align: center;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.15;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
+}
+@media (max-width: 760px) {
+  .hero-copy__headline {
+    left: 44vw;
+    bottom: calc(58svh - max(5svh, 24px) - 65px);
+    width: 72vw;
+    margin: 0;
+    font-size: clamp(20px, 5.2vw, 25px);
+  }
+}
+
+/* The foreground mask follows the stepped tower in image coordinates. */
+.hero__tower-layer {
+  clip-path: none;
+  -webkit-mask: url("../../assets/images/tower-mask.svg") center / cover
+    no-repeat;
+  mask: url("../../assets/images/tower-mask.svg") center / cover no-repeat;
+}
+@media (max-width: 760px) {
+  .hero__tower-layer {
+    clip-path: none;
+  }
+  .hero-copy__years {
+    gap: 40px;
+  }
+}
+/* Apply the cutout only across the large headline; supporting copy stays in front. */
+.hero__tower-layer {
+  clip-path: inset(22% 0 46% 0);
+}
+.hero-copy__headline {
+  z-index: 2;
+}
+@media (max-width: 760px) {
+  .hero__tower-layer {
+    clip-path: inset(22% 0 56% 0);
+  }
+  .hero-copy__years {
+    gap: 64px;
+    font-size: clamp(32px, 9vw, 48px);
+  }
+}
+.hero-copy__years {
+  width: min(100vw, 1200px);
+}
+.hero-copy__years > span {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.hero-copy__years > span:first-child {
+  text-align: right;
+}
+.hero-copy__years > span:last-child {
+  text-align: left;
+}
+@media (max-width: 760px) {
+  .hero-copy__years {
+    width: 100vw;
+    gap: 66px;
+  }
+}
+
+/* Center each message as a single headline behind the tower. */
+.hero-copy {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  left: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.hero-copy__years {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 39%;
+  bottom: auto;
+  width: 100%;
+  transform: translateX(-50%);
+  font-size: clamp(52px, 10vw, 148px);
+  text-align: center;
+  white-space: nowrap;
+}
+.hero-copy__years.is-changing {
+  transform: translate(-50%, 8px);
+}
+.hero-copy__headline {
+  left: 50%;
+  top: calc(39% + clamp(52px, 10vw, 148px) + 18px);
+  bottom: auto;
+  width: 80%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .hero-copy {
+    inset: 0;
+    left: 0;
+    bottom: 0;
+    width: auto;
+  }
+  .hero-copy__years {
+    left: 50%;
+    top: 37%;
+    bottom: auto;
+    width: 100%;
+    font-size: clamp(34px, 10vw, 70px);
+  }
+  .hero-copy__headline {
+    left: 50%;
+    top: calc(37% + clamp(34px, 10vw, 70px) + 15px);
+    bottom: auto;
+    width: 75%;
+  }
+}
+
+/* Supporting words flank the tower so it remains clear in the centre. */
+.hero-copy__headline {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(85px, 8vw, 130px);
+  width: min(90vw, 1100px);
+}
+.hero-copy__headline > span {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.hero-copy__headline > span:first-child {
+  text-align: right;
+}
+.hero-copy__headline > span:last-child {
+  text-align: left;
+}
+@media (max-width: 760px) {
+  .hero-copy__headline {
+    width: 96vw;
+    gap: 76px;
+    font-size: clamp(16px, 4.3vw, 20px);
+  }
+}
+
+/* A softer, editorial voice for the supporting line. */
+.hero-copy__headline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  font-size: clamp(25px, 2.45vw, 34px);
+  line-height: 1.25;
+}
+@media (max-width: 760px) {
+  .hero-copy__headline {
+    font-size: clamp(18px, 4.7vw, 22px);
+  }
+}
+
+/* Balance the supporting line against the main headline. */
+.hero-copy__headline {
+  align-items: baseline;
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.25;
+  gap: clamp(90px, 8vw, 130px);
+}
+.hero-copy__headline > span {
+  display: block;
+}
+@media (max-width: 760px) {
+  .hero-copy__headline {
+    font-size: clamp(16px, 4.1vw, 19px);
+    gap: 76px;
+  }
+}
+
+/* Upright, light sans-serif supporting text. */
+.hero-copy__headline {
+  font-family: "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Longer service messages remain readable without overflowing the hero. */
+.hero-copy__years.is-long {
+  font-size: clamp(40px, 6.2vw, 95px);
+  white-space: normal;
+  width: min(92%, 1200px);
+  line-height: 1.05;
+}
+@media (max-width: 760px) {
+  .hero-copy__years.is-long {
+    font-size: clamp(27px, 7vw, 48px);
+    width: 90%;
+  }
+}
+
+/* The experience label belongs only to the 15-year message. */
+.hero-copy__headline[hidden] {
+  display: none;
+}

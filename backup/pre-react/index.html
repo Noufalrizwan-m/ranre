@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ece9e1" />
+    <title>Royat Al Najah Real Estate | Dubai</title>
+    <link rel="preload" as="image" href="assets/images/skyline-day.jpg" />
+    <link rel="preload" as="image" href="assets/images/skyline-night.jpg" />
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="stylesheet" href="src/styles/hero.css" />
+    <link rel="stylesheet" href="src/styles/realistic.css" />
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="header" aria-label="Main header">
+      <a class="brand" href="./" aria-label="Roya Al Najah Real Estate — Home"
+        ><img
+          src="assets/images/logo.png"
+          alt="Roya Al Najah Real Estate LLC"
+          width="429"
+          height="304"
+      /></a>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="active" href="./" aria-current="page">Home</a
+        ><a href="https://ranre.ae/about/">About us</a
+        ><a href="https://ranre.ae/services/">Services</a
+        ><a href="https://ranre.ae/project/">Projects</a>
+      </nav>
+      <a class="contact" href="https://ranre.ae/contact-us/"
+        >Contact us <span aria-hidden="true">↗</span></a
+      >
+      <button
+        class="menu"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="navigation"
+      >
+        <span></span><span></span>
+      </button>
+    </header>
+    <main id="content">
+      <section
+        class="hero"
+        aria-label="Royat Al Najah Real Estate in Dubai"
+        data-mode="day"
+      >
+        <div class="hero__sky" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <h1>
+            <span class="hero-copy__years">15 YEARS</span>
+            <span class="hero-copy__headline"
+              ><span aria-hidden="true"></span><span>OF EXPERIENCE</span></span
+            >
+          </h1>
+        </div>
+        <div class="hero__tower-layer" aria-hidden="true"></div>
+        <button
+          class="light-control__switch"
+          type="button"
+          role="switch"
+          aria-label="Daylight mode"
+          aria-checked="true"
+          aria-describedby="light-help"
+        >
+          <span class="light-control__indicator" aria-hidden="true"></span>
+          <span
+            class="light-control__icon light-control__icon--sun"
+            aria-hidden="true"
+            >☀</span
+          >
+          <span
+            class="light-control__icon light-control__icon--moon"
+            aria-hidden="true"
+            >☾</span
+          >
+        </button>
+        <span id="light-help" class="sr-only"
+          >Switch between day and night views of the Dubai skyline.</span
+        >
+      </section>
+    </main>
+    <script type="module" src="src/scripts/main.js"></script>
+  </body>
+</html>

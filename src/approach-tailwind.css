@@ -1,0 +1,20 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+body[data-page=approach] .process-heading,
+body[data-page=approach] .process-list article {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) 170px;
+  gap: 30px;
+}
+body[data-page=approach] .process-heading { padding-bottom: 50px; }
+body[data-page=approach] .process-heading-copy { grid-column: 2 / 4; min-width: 0; }
+body[data-page=approach] .process-heading h2 { max-width: 24ch; margin: 0; }
+body[data-page=approach] .process-list article > div { min-width: 0; }
+@media (max-width: 760px) {
+  body[data-page=approach] .process-heading,
+  body[data-page=approach] .process-list article { grid-template-columns: 40px minmax(0, 1fr); gap: 15px; }
+  body[data-page=approach] .process-heading-copy { grid-column: 2; }
+  body[data-page=approach] .process-heading h2 { font-size: clamp(25px, 6vw, 38px); }
+  body[data-page=approach] .process-ar { grid-column: 2; }
+}

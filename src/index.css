@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Montserrat:wght@200;400;600&family=Poppins:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&display=swap");
+@import "tailwindcss";
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Brand typography: Optima when available; Google Fonts for open typefaces. */
